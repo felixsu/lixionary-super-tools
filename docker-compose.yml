@@ -1,0 +1,37 @@
+# Lixionary Super Tools
+#
+# The app is a single Next.js process serving both the UI and the backend API
+# routes (/api/*), so both published ports map to the same container:
+#   http://localhost:8120  — frontend
+#   http://localhost:8121  — backend API (e.g. /api/favorites, /api/auth/*)
+#
+# Google SSO (optional): put AUTH_SECRET / AUTH_GOOGLE_ID / AUTH_GOOGLE_SECRET
+# in a .env file next to this compose file, and register
+# http://localhost:8120/api/auth/callback/google as the OAuth redirect URI.
+
+services:
+  app:
+    build: .
+    ports:
+      - "8120:3000" # frontend
+      - "8121:3000" # backend API
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: lixionary-super-tools
+      # Sign-in flows must redirect back through the frontend port.
+      AUTH_URL: http://localhost:8120
+      AUTH_SECRET: ${AUTH_SECRET:-}
+      AUTH_GOOGLE_ID: ${AUTH_GOOGLE_ID:-}
+      AUTH_GOOGLE_SECRET: ${AUTH_GOOGLE_SECRET:-}
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

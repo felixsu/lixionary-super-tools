@@ -462,3 +462,41 @@ textarea.input { height: auto; padding: 12px 14px; line-height: 1.5; resize: ver
   text-align: left;
 }
 .user-menu button:hover { background: var(--color-surface-soft); }
+
+/* ── Google AdSense Sidebar Layout ────────────────────────────────── */
+.main-layout-body {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar-ad-left {
+  position: absolute;
+  left: -140px; /* 120px ad width + 20px gap */
+  top: 40px;
+  width: 120px;
+  height: 640px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1480px) {
+  .sidebar-ad-left {
+    display: none;
+  }
+}
+
+.bottom-ad-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+

@@ -6,6 +6,7 @@ import { usePersistentState } from '@/lib/usePersistentState';
 import { useFavorites } from '@/lib/useFavorites';
 import HeaderBar from '@/components/HeaderBar';
 import TabStrip from '@/components/TabStrip';
+import GoogleAd from '@/components/GoogleAd';
 import HomeScreen from '@/components/HomeScreen';
 import CommandPalette from '@/components/CommandPalette';
 import Base64Tool from '@/components/tools/Base64Tool';
@@ -150,16 +151,24 @@ export default function AppMain({ initialActiveTool }: { initialActiveTool: Tool
         onHome={() => setTabs(t => ({ ...t, active: null }))}
       />
 
-      {ActiveView ? (
-        <ActiveView />
-      ) : (
-        <HomeScreen
-          query={query}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-          onOpenTool={openTool}
-        />
-      )}
+      <div className="main-layout-body">
+        <GoogleAd type="sidebar" />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 110px)' }}>
+          <div style={{ flex: 1 }}>
+            {ActiveView ? (
+              <ActiveView />
+            ) : (
+              <HomeScreen
+                query={query}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+                onOpenTool={openTool}
+              />
+            )}
+          </div>
+          <GoogleAd type="bottom" />
+        </div>
+      </div>
 
       {paletteOpen && (
         <CommandPalette

@@ -9,6 +9,7 @@ import {
   Lock,
   FileText,
   Split,
+  Hash,
   Wrench,
   type LucideProps,
 } from 'lucide-react';
@@ -25,6 +26,7 @@ const ICONS: Record<string, React.ComponentType<LucideProps>> = {
   lock: Lock,
   'file-text': FileText,
   split: Split,
+  hash: Hash,
 };
 
 export default function ToolIcon({ name, ...props }: { name: string } & LucideProps) {

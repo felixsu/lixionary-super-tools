@@ -1,6 +1,6 @@
 // Tool registry — single source of truth for ids, categories, and search metadata.
 
-export type ToolId = 'base64' | 'url' | 'hmac' | 'jwt' | 'rsa' | 'coin' | 'dice' | 'password' | 'json-formatter' | 'yaml-formatter' | 'text-diff';
+export type ToolId = 'base64' | 'url' | 'hmac' | 'jwt' | 'rsa' | 'coin' | 'dice' | 'password' | 'json-formatter' | 'yaml-formatter' | 'text-diff' | 'checksum' | 'uuid';
 
 export interface ToolDef {
   id: ToolId;
@@ -117,6 +117,24 @@ export const TOOLS: ToolDef[] = [
     description: 'Compare two texts line-by-line and character-by-character with Split and Unified layout modes.',
     icon: 'split',
     keywords: ['diff', 'compare', 'text', 'git', 'merge', 'split', 'unified'],
+  },
+  {
+    id: 'checksum',
+    category: 'Cryptography',
+    name: 'File Checksum Generator',
+    tabName: 'Checksum',
+    description: 'Compute MD5, SHA-1, SHA-256, and SHA-512 checksums for files up to 4GB. Progress and speeds are updated in real-time.',
+    icon: 'shield-check',
+    keywords: ['checksum', 'file', 'hash', 'md5', 'sha', 'sha256', 'sha512', 'sha1'],
+  },
+  {
+    id: 'uuid',
+    category: 'Random',
+    name: 'UUID Generator',
+    tabName: 'UUID',
+    description: 'Generate Universally Unique Identifiers (UUID v4, v5, and v7) in bulk, with support for seeds and namespaces.',
+    icon: 'hash',
+    keywords: ['uuid', 'guid', 'id', 'generate', 'random', 'v4', 'v7', 'v5'],
   },
 ];
 

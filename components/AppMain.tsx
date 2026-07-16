@@ -19,6 +19,8 @@ import PasswordTool from '@/components/tools/PasswordTool';
 import JsonFormatterTool from '@/components/tools/JsonFormatterTool';
 import YamlFormatterTool from '@/components/tools/YamlFormatterTool';
 import TextDiffTool from '@/components/tools/TextDiffTool';
+import ChecksumTool from '@/components/tools/ChecksumTool';
+import UuidTool from '@/components/tools/UuidTool';
 
 interface TabsState {
   open: ToolId[];
@@ -37,6 +39,8 @@ const TOOL_VIEWS: Record<ToolId, React.ComponentType> = {
   'json-formatter': JsonFormatterTool,
   'yaml-formatter': YamlFormatterTool,
   'text-diff': TextDiffTool,
+  checksum: ChecksumTool,
+  uuid: UuidTool,
 };
 
 export default function AppMain({ initialActiveTool }: { initialActiveTool: ToolId | null }) {

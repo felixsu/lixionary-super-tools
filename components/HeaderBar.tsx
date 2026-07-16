@@ -30,9 +30,19 @@ export default function HeaderBar({ onOpenSearch }: { onOpenSearch: () => void }
   return (
     <div className="tb">
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div style={{ width: 32, height: 32, borderRadius: 9999, background: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Lock size={17} color="#fff" />
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt="Lixionary Logo"
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            objectFit: 'cover',
+            objectPosition: '50% 35%',
+            border: '1px solid var(--color-hairline)',
+          }}
+        />
         <span style={{ fontFamily: 'var(--font-serif)', fontSize: 22, color: 'var(--color-ink)', letterSpacing: '-0.3px' }}>
           Lixionary Tools
         </span>

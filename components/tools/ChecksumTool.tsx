@@ -195,7 +195,7 @@ export default function ChecksumTool() {
   }
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--form">
       <h1 className="h1" style={{ marginBottom: 8 }}>File Checksum Generator</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>
         Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes for files up to 4GB locally in your browser.

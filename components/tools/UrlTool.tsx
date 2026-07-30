@@ -35,7 +35,7 @@ export default function UrlTool() {
   };
 
   return (
-    <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--narrow">
       <h1 className="h1" style={{ marginBottom: 8 }}>URL encode / decode</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>
         Percent-encode a string for use in URLs, or decode one back to plain text.

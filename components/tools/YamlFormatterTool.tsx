@@ -354,13 +354,13 @@ count: 2`;
   };
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--wide">
       <h1 className="h1" style={{ marginBottom: 8 }}>YAML Formatter &amp; Validator</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>
         Format, sort keys, validate, and convert YAML to JSON. Explore paths interactively.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 24 }}>
+      <div className="pane-grid">
         {/* Left Column: Input */}
         <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

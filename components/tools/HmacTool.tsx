@@ -56,7 +56,7 @@ export default function HmacTool() {
   const codeByTab = { python: pythonCode, node: nodeCode, java: javaCode };
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--form">
       <h1 className="h1" style={{ marginBottom: 8 }}>HMAC generator</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>Sign a message with a secret key.</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

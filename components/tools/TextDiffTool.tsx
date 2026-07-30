@@ -196,14 +196,14 @@ export default function TextDiffTool() {
   };
 
   return (
-    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--full">
       <h1 className="h1" style={{ marginBottom: 8 }}>Text Diff</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>
         Compare two texts line-by-line and character-by-character with visual git-like markers.
       </p>
 
       {/* Editor Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 20, marginBottom: 24 }}>
+      <div className="pane-grid" style={{ gap: 20, marginBottom: 24 }}>
         {/* Left Side: Original */}
         <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

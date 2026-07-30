@@ -88,7 +88,7 @@ export default function RsaTool() {
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--form">
       <h1 className="h1" style={{ marginBottom: 8 }}>RSA key generator</h1>
       <p className="body-md muted" style={{ margin: '0 0 32px' }}>
         Generates in your browser &mdash; keys never leave this page.

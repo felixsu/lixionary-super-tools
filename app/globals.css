@@ -226,6 +226,35 @@ textarea.input { height: auto; padding: 12px 14px; line-height: 1.5; resize: ver
   z-index: 10;
 }
 
+/* ── Page shell ───────────────────────────────────────────────────── */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+.page--narrow { --page-max: 760px; }
+.page--form   { --page-max: 800px; }
+.page--md     { --page-max: 900px; }
+.page--wide   { --page-max: 1200px; }
+.page--full   { --page-max: 1400px; }
+
+@media (min-width: 2000px) {
+  .page--narrow { --page-max: 900px; }
+  .page--form   { --page-max: 1000px; }
+  .page--md     { --page-max: 1100px; }
+  .page--wide   { --page-max: min(1800px, 92vw); }
+  .page--full   { --page-max: min(2000px, 94vw); }
+}
+
+.pane-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 890px) {
+  .pane-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Modal ────────────────────────────────────────────────────────── */
 .modal-overlay {
   position: fixed;

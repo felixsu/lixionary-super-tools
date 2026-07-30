@@ -111,7 +111,7 @@ export default function JwtTool() {
   };
 
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--md">
       <h1 className="h1" style={{ marginBottom: 8 }}>JWT decode &amp; generate</h1>
       <p className="body-md muted" style={{ margin: '0 0 24px' }}>Inspect, verify or build a JSON Web Token.</p>
 

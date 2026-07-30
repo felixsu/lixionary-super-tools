@@ -1,12 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, SearchX, Star } from 'lucide-react';
 import { CATEGORIES, ToolDef, ToolId, TOOLS, TOOLS_BY_ID } from '@/lib/tools';
 import { searchTools } from '@/lib/fuzzy';
 import ToolIcon from './ToolIcon';
 
-const FAV_VISIBLE = 3;
 const FAV_CARD_STEP = 316; // card width (300) + gap (16)
 
 export default function HomeScreen({
@@ -21,9 +20,25 @@ export default function HomeScreen({
   onOpenTool: (id: ToolId) => void;
 }) {
   const [rawFavIndex, setFavIndex] = useState(0);
+  const [favVisible, setFavVisible] = useState(3);
+  const favViewportRef = useRef<HTMLDivElement>(null);
 
   const favoriteTools = favorites.map(id => TOOLS_BY_ID[id]).filter(Boolean);
-  const favMaxIndex = Math.max(0, favoriteTools.length - FAV_VISIBLE);
+  const hasFavorites = favoriteTools.length > 0;
+
+  useEffect(() => {
+    const el = favViewportRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(entries => {
+      const width = entries[0].contentRect.width;
+      // The track has a trailing-gap-free layout, so N cards need N*316 - 16px.
+      setFavVisible(Math.max(1, Math.floor((width + 16) / FAV_CARD_STEP)));
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasFavorites]);
+
+  const favMaxIndex = Math.max(0, favoriteTools.length - favVisible);
   // Clamp at render time so removing favourites never leaves the carousel
   // scrolled past the end.
   const favIndex = Math.min(rawFavIndex, favMaxIndex);
@@ -52,14 +67,14 @@ export default function HomeScreen({
   };
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page page--wide">
       <h1 className="h1" style={{ marginBottom: 8 }}>Tools</h1>
       <p className="body-md muted" style={{ margin: '0 0 24px' }}>
         Encoding, signing and key-generation utilities. Press <span className="kbd-chip">⌘K</span> to search.
         Click the star on a tool to add it here.
       </p>
 
-      {favoriteTools.length > 0 && (
+      {hasFavorites && (
         <div style={{ marginBottom: 44 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
             <h2 className="h2" style={{ margin: 0 }}>Favourites</h2>
@@ -67,7 +82,7 @@ export default function HomeScreen({
               <button
                 className="btn-icon"
                 aria-label="Previous favourite"
-                disabled={favoriteTools.length <= FAV_VISIBLE}
+                disabled={favoriteTools.length <= favVisible}
                 onClick={() => setFavIndex(favIndex <= 0 ? favMaxIndex : favIndex - 1)}
               >
                 <ChevronLeft size={16} />
@@ -75,14 +90,14 @@ export default function HomeScreen({
               <button
                 className="btn-icon"
                 aria-label="Next favourite"
-                disabled={favoriteTools.length <= FAV_VISIBLE}
+                disabled={favoriteTools.length <= favVisible}
                 onClick={() => setFavIndex(favIndex >= favMaxIndex ? 0 : favIndex + 1)}
               >
                 <ChevronRight size={16} />
               </button>
             </div>
           </div>
-          <div className="fav-carousel-viewport">
+          <div className="fav-carousel-viewport" ref={favViewportRef}>
             <div className="fav-carousel-track" style={{ transform: `translateX(-${favIndex * FAV_CARD_STEP}px)` }}>
               {favoriteTools.map(tool => (
                 <div key={tool.id} className="fav-card" onClick={() => onOpenTool(tool.id)}>

@@ -8,6 +8,7 @@ import {
   Dices,
   Lock,
   FileText,
+  FileDown,
   Split,
   Hash,
   Wrench,
@@ -25,6 +26,7 @@ const ICONS: Record<string, React.ComponentType<LucideProps>> = {
   dices: Dices,
   lock: Lock,
   'file-text': FileText,
+  'file-down': FileDown,
   split: Split,
   hash: Hash,
 };

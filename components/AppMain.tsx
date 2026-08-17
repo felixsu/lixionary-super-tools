@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { isToolId, ToolId } from '@/lib/tools';
 import { usePersistentState } from '@/lib/usePersistentState';
 import { useFavorites } from '@/lib/useFavorites';
@@ -22,6 +23,18 @@ import TextDiffTool from '@/components/tools/TextDiffTool';
 import ChecksumTool from '@/components/tools/ChecksumTool';
 import UuidTool from '@/components/tools/UuidTool';
 
+// Loaded on demand: this tool pulls in marked, highlight.js and (lazily again,
+// only for documents that use them) mermaid. A static import would put all of
+// that in the chunk shared by every other tool.
+const MarkdownPdfTool = dynamic(() => import('@/components/tools/MarkdownPdfTool'), {
+  ssr: false,
+  loading: () => (
+    <div className="body-md muted" style={{ maxWidth: 1400, margin: '0 auto', padding: '40px 32px' }}>
+      Loading…
+    </div>
+  ),
+});
+
 interface TabsState {
   open: ToolId[];
   active: ToolId | null;
@@ -41,6 +54,7 @@ const TOOL_VIEWS: Record<ToolId, React.ComponentType> = {
   'text-diff': TextDiffTool,
   checksum: ChecksumTool,
   uuid: UuidTool,
+  'md-to-pdf': MarkdownPdfTool,
 };
 
 export default function AppMain({ initialActiveTool }: { initialActiveTool: ToolId | null }) {

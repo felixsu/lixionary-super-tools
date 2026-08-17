@@ -1,6 +1,6 @@
 // Tool registry — single source of truth for ids, categories, and search metadata.
 
-export type ToolId = 'base64' | 'url' | 'hmac' | 'jwt' | 'rsa' | 'coin' | 'dice' | 'password' | 'json-formatter' | 'yaml-formatter' | 'text-diff' | 'checksum' | 'uuid';
+export type ToolId = 'base64' | 'url' | 'hmac' | 'jwt' | 'rsa' | 'coin' | 'dice' | 'password' | 'json-formatter' | 'yaml-formatter' | 'text-diff' | 'checksum' | 'uuid' | 'md-to-pdf';
 
 export interface ToolDef {
   id: ToolId;
@@ -135,6 +135,15 @@ export const TOOLS: ToolDef[] = [
     description: 'Generate Universally Unique Identifiers (UUID v4, v5, and v7) in bulk, with support for seeds and namespaces.',
     icon: 'hash',
     keywords: ['uuid', 'guid', 'id', 'generate', 'random', 'v4', 'v7', 'v5'],
+  },
+  {
+    id: 'md-to-pdf',
+    category: 'Text',
+    name: 'Markdown to PDF',
+    tabName: 'MD → PDF',
+    description: 'Turn a Markdown file into a typeset PDF. Mermaid fences render as diagrams, tables as tables, and code fences get syntax highlighting.',
+    icon: 'file-down',
+    keywords: ['markdown', 'md', 'pdf', 'export', 'print', 'mermaid', 'document', 'convert', 'diagram'],
   },
 ];
 

@@ -423,6 +423,9 @@ textarea.input { height: auto; padding: 12px 14px; line-height: 1.5; resize: ver
 }
 .palette-result:hover, .palette-result.selected { background: var(--color-surface-soft); }
 
+.md-spin { animation: spin 900ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
 /* ── Header avatar menu ───────────────────────────────────────────── */
 .avatar {
   display: inline-flex;

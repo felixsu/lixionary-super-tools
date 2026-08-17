@@ -1,14 +1,15 @@
 # Lixionary Super Tools
 
-A collection of small developer utilities — encoding, cryptography and randomness — behind a tabbed single-page UI with ⌘K fuzzy search. See `docs/spec.md` for the product spec.
+A collection of small developer utilities — encoding, cryptography, randomness and text — behind a tabbed single-page UI with ⌘K fuzzy search. See `docs/spec.md` for the product spec.
 
 ## Tools
 
 - **Encoding/Decoding** — Base64 (URL-safe alphabet, UTF-8/Latin-1), URL percent-encoding
-- **Cryptography** — HMAC generator (with Python/Node/Java snippets), JWT decode/verify/generate (HS256 & RS256), RSA key generator (PEM/OpenSSH) with RSA-OAEP encrypt/decrypt
-- **Random** — Coin toss and dice roll simulators with live distribution histograms
+- **Cryptography** — HMAC generator (with Python/Node/Java snippets), JWT decode/verify/generate (HS256 & RS256), RSA key generator (PEM/OpenSSH) with RSA-OAEP encrypt/decrypt, file checksums (MD5/SHA-1/SHA-256/SHA-512, files up to 4GB)
+- **Random** — Coin toss and dice roll simulators with live distribution histograms, password generator, UUID generator (v4/v5/v7, bulk, with seeds and namespaces)
+- **Text** — JSON and YAML formatters/validators with interactive tree navigation and JSONPath extraction, text diff (split and unified layouts), Markdown → PDF with rendered mermaid diagrams, GFM tables and syntax-highlighted code
 
-All crypto runs client-side via the Web Crypto API; keys and secrets never leave the browser.
+Everything runs client-side: crypto via the Web Crypto API, file hashing via hash-wasm, and Markdown rendering and PDF export in the browser. Keys, secrets and files never leave the page.
 
 ## Running
 
